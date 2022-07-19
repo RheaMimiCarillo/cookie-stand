@@ -67,9 +67,9 @@ let seattleBranch =
   // use template literatal to make a string for the content of eat
   renderSalesList: function()
   {
-    this.calcCookiesPerHour(); // fills the
+    this.calcCookiesPerHour(); // fills cookiesSoldEachHour[] with cookies sold each hour
 
-    // grab the element in the DOM I want to add stuff to (<section id="salesLists">)
+    // 0. grab the element in the DOM I want to add stuff to (<section id="salesLists">)
     let listContainer = document.getElementById('salesLists');
 
     // 1. create the element
@@ -80,6 +80,7 @@ let seattleBranch =
     list.setAttribute('class', this.location);
 
     // 2. give it content; we'll do this later kinda with the li
+
     // 3. append it to the DOM
     // take the ul we just made and append it as a child to the element we grabbed in listContainer
     listContainer.appendChild(list);
@@ -93,18 +94,23 @@ let seattleBranch =
 
       // 2. give it content
       // todo: write a template literal using business Hours[i] and cookiesSoldEachHour[i] in series to be the content of the list item
+      listItem.textContent = `${this.businessHours[i]}: ${this.cookiesSoldEachHour[i]} cookies`;
 
       // 3. append it to the DOM
+      // append the <li> to the <ul>
       unorderedList.appendChild(listItem);
     }
 
-    // todo: at the end of the for loop, make make a li for totalCookiesSoldToday
+    // todo: at the end of the for loop, make make a <li> for totalCookiesSoldToday and append to end of the above <ul>
+    let totalLi = document.createElement('li');
+    totalLi.textContent = `Total: ${this.totalCookiesSoldToday}`;
+    unorderedList.appendChild(this.totalLi);
   }
 
 };
 
 // call seattle stuff to test
-seattleBranch.calcCookiesPerHour();
+seattleBranch.renderSalesList();
 
 let tokyoBranch =
 {
