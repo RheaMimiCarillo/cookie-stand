@@ -65,16 +65,40 @@ let seattleBranch =
 
   // method to create html elements and fill them with content in a <ul> with <li>
   // use template literatal to make a string for the content of eat
-  createSalesList: function()
+  renderSalesList: function()
   {
-    // grab the element in the DOM I want to add stuff to
+    this.calcCookiesPerHour(); // fills the
+
+    // grab the element in the DOM I want to add stuff to (<section id="salesLists">)
     let listContainer = document.getElementById('salesLists');
 
     // 1. create the element
-    // create <article>
-    let art = document.createElement('article');
-    // 2. give it content
+    let list = document.createElement('ul'); // create a variable for the <ul> I want to make
+
+    // set the <ul> to have the attribute 'class' and the class being the location
+    // ex: <ul class="Seattle">
+    list.setAttribute('class', this.location);
+
+    // 2. give it content; we'll do this later kinda with the li
     // 3. append it to the DOM
+    // take the ul we just made and append it as a child to the element we grabbed in listContainer
+    listContainer.appendChild(list);
+
+    let unorderedList = document.getElementsByClassName(this.location);
+
+    for(let i = 0; i < this.businessHours.length; i++)
+    {
+      // 1. create the element
+      let listItem = document.createElement('li');
+
+      // 2. give it content
+      // todo: write a template literal using business Hours[i] and cookiesSoldEachHour[i] in series to be the content of the list item
+
+      // 3. append it to the DOM
+      unorderedList.appendChild(listItem);
+    }
+
+    // todo: at the end of the for loop, make make a li for totalCookiesSoldToday
   }
 
 };
