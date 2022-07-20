@@ -3,6 +3,32 @@
 console.log('hello there');
 // create object literals for every shop
 
+// constructor Object for the locations
+function CookieStore (location, minCust, maxCust, avgCookiesPerSale)
+{
+  this.location = location;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookiesPerSale = avgCookiesPerSale;
+  this.totalCookiesSoldToday = 0;
+}
+
+// todo: instantiate some branches with "new" keyword
+
+// todo: make a table header render'er function to list business hours
+// todo: give each instance of CookieStore its own render() function for sales data
+// render function will build a table for cookie sales by location and time
+// todo: the table's footer will contain the total cookie sales for that time and place
+// note: I already have this in calcCookiesPerHour and can grab and store it each cyle of the for loop
+// todo: make a table footer rendering function to store the accumulated totals of cookie sales each hour
+// note: I'm not sure if that's the top or bottom of each hour, yet
+/*
+  I forgor
+*/
+
+// todo: standalone functions that the CookieStores objects can useto get random customers and calculate cookies per hour
+
+/*
 // put attributes(properties), arrays, methods and such in each
 // remember to use the 'this.' keyword to reference an object in place
 let seattleBranch =
@@ -629,3 +655,4 @@ dubaiBranch.renderSalesList();
 dubaiBranch.renderSalesList();
 parisBranch.renderSalesList();
 limaBranch.renderSalesList();
+*/
