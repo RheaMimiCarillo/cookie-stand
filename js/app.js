@@ -4,7 +4,7 @@ console.log('hello there');
 // create object literals for every shop
 
 // constructor Object for the locations
-function CookieStore (location, minCust, maxCust, avgCookiesPerSale)
+function CookieStand (location, minCust, maxCust, avgCookiesPerSale)
 {
   this.location = location;
   this.minCust = minCust;
@@ -13,20 +13,52 @@ function CookieStore (location, minCust, maxCust, avgCookiesPerSale)
   this.totalCookiesSoldToday = 0;
 }
 
-// todo: instantiate some branches with "new" keyword
+
+let seattleBranch = new CookieStand(
+  'Seattle',
+  23,
+  65,
+  6.3);
+let tokyoBranch = new CookieStand(
+  'Tokyo',
+  3,
+  24,
+  1.2
+);
+let dubaiBranch = new CookieStand(
+  'Dubai',
+  11,
+  38,
+  3.7
+);
+let parisBranch = new CookieStand(
+  'Paris',
+  20,
+  38,
+  2.3
+);
+let limaBranch = new CookieStand(
+  'Lima',
+  2,
+  16,
+  4.6
+);
+
+console.log(seattleBranch.location);
+
 
 // todo: make a table header render'er function to list business hours
 // todo: give each instance of CookieStore its own render() function for sales data
 // render function will build a table for cookie sales by location and time
 // todo: the table's footer will contain the total cookie sales for that time and place
-// note: I already have this in calcCookiesPerHour and can grab and store it each cyle of the for loop
+// note: I already have this in calcCookiesPerHour and can grab and store it each cycle of the for loop
 // todo: make a table footer rendering function to store the accumulated totals of cookie sales each hour
 // note: I'm not sure if that's the top or bottom of each hour, yet
 /*
   I forgor
 */
 
-// todo: standalone functions that the CookieStores objects can useto get random customers and calculate cookies per hour
+// todo: standalone functions that the CookieStores objects can use to get random customers and calculate cookies per hour
 
 /*
 // put attributes(properties), arrays, methods and such in each
