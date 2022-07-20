@@ -197,7 +197,7 @@ renderSalesTableHeader();
 // todo: make a table footer rendering function to store the accumulated totals of cookie sales each hour
 // note: I'm not sure if that's the top or bottom of each hour, yet
 /*
-  I forgor
+  I forgor 💀
 */
 
 // todo: standalone functions that the CookieStores objects can use to get random customers and calculate cookies per hour
@@ -823,6 +823,40 @@ let limaBranch =
 };
 
 // instantiate and plop each branch's data into the DOM
+
+let seattleBranch = new CookieStand(
+  'Seattle',
+  23,
+  65,
+  6.3
+  );
+
+let tokyoBranch = new CookieStand(
+  'Tokyo',
+  3,
+  24,
+  1.2
+  );
+let dubaiBranch = new CookieStand(
+  'Dubai',
+  11,
+  38,
+  3.7
+  );
+
+let Branch = new CookieStand(
+  '',
+  ,
+  ,
+  );
+
+let Branch = new CookieStand(
+  '',
+  ,
+  ,
+  );
+
+
 seattleBranch.renderSalesList();
 tokyoBranch.renderSalesList();
 dubaiBranch.renderSalesList();
