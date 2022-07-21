@@ -48,13 +48,14 @@ h1, h2, h3 {
 
 .salesData {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
 /* TABLE STYLES */
-
 
 tbody td, tfoot td {
   border: 1px solid lightgray;
 }
+
 table {
   margin: 1rem;
 }
