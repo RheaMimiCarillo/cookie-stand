@@ -3,30 +3,204 @@
 console.log('hello there');
 // create object literals for every shop
 
+
+// global variable for business hours
+// since each branch has the same hours
+const businessHours =
+[
+  '6:00am',
+  '7:00am',
+  '8:00am',
+  '9:00am',
+  '10:00am',
+  '11:00am',
+  '12:00pm',
+  '1:00pm',
+  '2:00pm',
+  '3:00pm',
+  '4:00pm',
+  '5:00pm',
+  '6:00pm',
+  '7:00pm'
+];
+
 // constructor Object for the locations
-function CookieStore (location, minCust, maxCust, avgCookiesPerSale)
+function CookieStand (location, minCust, maxCust, avgCookiesPerSale)
 {
   this.location = location;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookiesPerSale = avgCookiesPerSale;
+
+  // stores the cookies sold from 6am to 7pm
+  // will fill with data each hour
+  this.cookiesSoldEachHour = [];
+
+  // property for total cookies sold that day
   this.totalCookiesSoldToday = 0;
+
+
+  // method to get how many customers there were at this hour, between minCust and maxCust (inclusive)
+  this.getCustomersThisHour = function()
+  {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust +1) + this.minCust);
+  };
+
+  // method to calculate how many many cookies were sold at any given hour
+  this.calcCookiesPerHour = function()
+  {
+    for(let i = 0; i < businessHours.length; i++)
+    {
+      // gets the number of customers/sales at a given hour
+      let customersThisHour = this.getCustomersThisHour();
+
+      // calculates the cookie sales and rounds up to nearest integer
+      console.log(`cookies sold so far: ${this.totalCookiesSoldToday}`);
+      let cookiesSoldThisHour = Math.ceil(customersThisHour * this.avgCookiesPerSale);
+      console.log(`customers at ${businessHours[i]}: ${customersThisHour} * ${this.avgCookiesPerSale} =`);
+      console.log(`cookies sold this hour: ${cookiesSoldThisHour}\n\n`);
+
+      // assign the cookies sold each hour to an cookiesSoldEachHour[i]
+      // in hindsight, I could've use .push()
+      this.cookiesSoldEachHour[i] = cookiesSoldThisHour;
+
+      // accumulate total sales by cookies sold this hour
+      this.totalCookiesSoldToday += cookiesSoldThisHour;
+    }
+    // shows how many cookies sold at the end of the business day
+    console.log(`total cookies sold today: ${this.totalCookiesSoldToday}`);
+  };
+
+  this.renderSalesDataRows = function(CookieStand)
+  {
+    // fills cookiesSoldEachHour[] with sales data
+    this.calcCookiesPerHour();
+
+    // 0. grab the element in the DOM I want to add stuff to (table with id 'salesTable')
+    let salesTableBody = document.getElementById('salesTable');
+
+    // todo: make a table row for this.location
+
+    // todo: make a for loop to render sales data
+
+  };
 }
 
-// todo: instantiate some branches with "new" keyword
+
+
+// global function to create <table> and <thead> and render using the array of business hour
+function renderSalesTableHeader()
+{
+  // 0. grab the document
+  let salesSection = document.getElementById('salesLists');
+
+  // 1. create the element (<table>)
+  let salesDataTable = document.createElement('table');
+  salesDataTable.setAttribute('id', 'salesTable');
+  // 3. append it to the DOM
+  salesSection.appendChild(salesDataTable);
+
+  // 1. create the element (<thead>)
+  let businessHoursHead = document.createElement('thead');
+  // 3. append it to the DOM
+  salesDataTable.appendChild(businessHoursHead);
+
+  // create a <tr>
+  let businessHoursRow = document.createElement('tr');
+  businessHoursRow.setAttribute('id', 'businessHours');
+  // append tr to dom
+  businessHoursHead.appendChild(businessHoursRow);
+
+
+
+  // create an empty <td> and append to <thead>
+  let emptyHoursDataRow = document.createElement('td');
+  businessHoursRow.appendChild(emptyHoursDataRow);
+  for(let i = 0; i < businessHours.length; i++)
+  {
+    // create a <td> for each business hour
+    let businessHoursDataRow = document.createElement('td');
+
+    // give it content (the hours from 6am to 7pm)
+    businessHoursDataRow.textContent = `${businessHours[i]}`;
+
+    // append to dom
+    businessHoursRow.appendChild(businessHoursDataRow);
+  }
+
+  // create Daily Location Total Header row
+  let dailyLocationTotal = document.createElement('td');
+
+  dailyLocationTotal.textContent = 'Daily Location Total';
+
+  businessHoursRow.appendChild(dailyLocationTotal);
+
+  // create <tbody> for the sales data rows to go into
+  let salesTableBody = document.createElement('tbody');
+  salesTableBody.setAttribute('id', 'salesData');
+  salesDataTable.appendChild(salesTableBody);
+}
+
+// todo: global function to render footer <thead> with total sales at the bottom of each hour for all locations
+
+function renderSalesTableFooter()
+{
+  console.log('this is the table footer');
+}
+
+
+
+let seattleBranch = new CookieStand(
+  'Seattle',
+  23,
+  65,
+  6.3);
+let tokyoBranch = new CookieStand(
+  'Tokyo',
+  3,
+  24,
+  1.2
+);
+let dubaiBranch = new CookieStand(
+  'Dubai',
+  11,
+  38,
+  3.7
+);
+let parisBranch = new CookieStand(
+  'Paris',
+  20,
+  38,
+  2.3
+);
+let limaBranch = new CookieStand(
+  'Lima',
+  2,
+  16,
+  4.6
+);
+
+// debug log
+console.log(seattleBranch.location);
+
+// render the business hours header
+renderSalesTableHeader();
+
+// render data rows for seattle
+
 
 // todo: make a table header render'er function to list business hours
 // todo: give each instance of CookieStore its own render() function for sales data
 // render function will build a table for cookie sales by location and time
 // todo: the table's footer will contain the total cookie sales for that time and place
-// note: I already have this in calcCookiesPerHour and can grab and store it each cyle of the for loop
+// note: I already have this in calcCookiesPerHour and can grab and store it each cycle of the for loop
 // todo: make a table footer rendering function to store the accumulated totals of cookie sales each hour
 // note: I'm not sure if that's the top or bottom of each hour, yet
 /*
   I forgor
 */
 
-// todo: standalone functions that the CookieStores objects can useto get random customers and calculate cookies per hour
+// todo: standalone functions that the CookieStores objects can use to get random customers and calculate cookies per hour
 
 /*
 // put attributes(properties), arrays, methods and such in each
@@ -83,7 +257,7 @@ let seattleBranch =
       console.log(`customers at ${this.businessHours[i]}: ${customersThisHour} * ${this.avgCookiesPerSale} =`);
       console.log(`cookies sold this hour: ${cookiesSoldThisHour}\n\n`);
 
-      // appends the cookies sold each hour to an array
+      // assign the cookies sold each hour to an cookiesSoldEachHour[i]
       // in hindsight, I could've use .push()
       this.cookiesSoldEachHour[i] = cookiesSoldThisHour;
 
