@@ -1,9 +1,30 @@
+/* flexbox notes! put flexbox on the !container! of the content, and not the content itself */
+
+
+/*
+vs code keyboard shortcuts: alt + click will create more cursors. useful to write something in a lot of places at once
+*/
+
 * {
   box-sizing: border-box;
 }
 
 body {
   background-color: beige;
+}
+
+main {
+  /*  */
+  margin: auto;
+  width: 960px;
+  /* displays things in the main as flexbox
+  use flex-wrap: wrap and the section between flex thing */
+  display: flex;
+}
+
+header nav {
+  margin: auto;
+  width: 960px;
 }
 
 h3 {
@@ -21,6 +42,13 @@ ol {
   padding: 1rem;
 }
 
+h1, h2, h3 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.salesData {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 /* TABLE STYLES */
 
 
@@ -35,4 +63,5 @@ td, th {
 }
 thead th {
   font-weight: bold;
+
 }

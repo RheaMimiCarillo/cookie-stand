@@ -282,6 +282,3 @@ tokyoBranch.renderSalesDataRows();
 dubaiBranch.renderSalesDataRows();
 parisBranch.renderSalesDataRows();
 limaBranch.renderSalesDataRows();
-
-// render footer rows
-renderSalesTableFooter();
