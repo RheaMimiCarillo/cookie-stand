@@ -77,12 +77,30 @@ function CookieStand (location, minCust, maxCust, avgCookiesPerSale)
     this.calcCookiesPerHour();
 
     // 0. grab the element in the DOM I want to add stuff to (table with id 'salesTable')
-    let salesTableBody = document.getElementById('salesTable');
+    let salesTableBody = document.getElementById('salesData');
 
-    // todo: make a table row for this.location
+    let salesTableRow = document.createElement('tr');
+    salesTableRow.setAttribute('id', this.location);
+    salesTableBody.appendChild(salesTableRow);
+
+    let locationCell = document.createElement('td');
+    locationCell.textContent = this.location;
+    salesTableRow.appendChild(locationCell);
 
     // todo: make a for loop to render sales data
+    for (let i = 0; i < businessHours.length; i++)
+    {
+      // create element
+      let hourlySalesCell = document.createElement('td');
+      // give content
+      hourlySalesCell.textContent = this.cookiesSoldEachHour[i];
+      salesTableRow.appendChild(hourlySalesCell);
+    }
+    // create cell for total sales that day
 
+    let totalCookiesSoldTodayCell = document.createElement('td');
+    totalCookiesSoldTodayCell.textContent = this.totalCookiesSoldToday;
+    salesTableRow.appendChild(totalCookiesSoldTodayCell);
   };
 }
 
@@ -185,7 +203,7 @@ console.log(seattleBranch.location);
 
 // render the business hours header
 renderSalesTableHeader();
-
+seattleBranch.renderSalesDataRows();
 // render data rows for seattle
 
 
