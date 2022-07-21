@@ -20,3 +20,19 @@ ol {
   list-style: decimal;
   padding: 1rem;
 }
+
+/* TABLE STYLES */
+
+
+tbody td, tfoot td {
+  border: 1px solid lightgray;
+}
+table {
+  margin: 1rem;
+}
+td, th {
+  padding: .5rem;
+}
+thead th {
+  font-weight: bold;
+}
