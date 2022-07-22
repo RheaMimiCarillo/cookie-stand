@@ -21,7 +21,8 @@ const businessHours =
   '7:00pm'
 ];
 
-// curve to modify max traffic during certain hours of the day
+// lab-07 stretch goal:
+// curve to modify maximum customers during certain hours of the day
 const maxTrafficCurve =
 [
   0.5,
@@ -41,6 +42,23 @@ const maxTrafficCurve =
   0.6,
 ];
 
+// template to listen for and handle events
+// 1. window into the dom (the thing we are going to attach the event listener to)
+
+let form = document.getElementById('formId');
+// let form2 = document.querySelector('form');
+
+// 3. event handler
+function handleSubmit(event) {
+  event.preventDefault();
+  let first = event.target.firstName.value;
+  let last = event.target.lastName.value;
+  console.log(first, last);
+}
+
+// 2. add event listener
+//.addEventListener
+form.addEventListener('submit', handleSubmit);
 // empty array for hourly totals of every location
 let hourlyTotalsEveryLocation = [];
 
@@ -86,6 +104,7 @@ function CookieStand (location, minCust, maxCust, avgCookiesPerSale)
 
       // calculates the cookie sales and rounds up to nearest integer
       console.log(`cookies sold so far: ${this.totalCookiesSoldToday}`);
+      // rounded up to the nearest whole human
       let cookiesSoldThisHour = Math.ceil(customersThisHour * this.avgCookiesPerSale);
       console.log(`customers at ${businessHours[i]}: ${customersThisHour} * ${this.avgCookiesPerSale} =`);
       console.log(`cookies sold this hour: ${cookiesSoldThisHour}\n\n`);
