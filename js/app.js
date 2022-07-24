@@ -190,13 +190,13 @@ function renderSalesTableHeader()
 
 
 
-  // create an empty <td> and append to <thead>
-  let emptyHoursDataRow = document.createElement('td');
+  // create an empty <th> and append to <thead>
+  let emptyHoursDataRow = document.createElement('th');
   businessHoursRow.appendChild(emptyHoursDataRow);
   for(let i = 0; i < businessHours.length; i++)
   {
     // create a <td> for each business hour
-    let businessHoursDataRow = document.createElement('td');
+    let businessHoursDataRow = document.createElement('th');
 
     // give it content (the hours from 6am to 7pm)
     businessHoursDataRow.textContent = `${businessHours[i]}`;
@@ -206,7 +206,7 @@ function renderSalesTableHeader()
   }
 
   // create Daily Location Total Header row
-  let dailyLocationTotal = document.createElement('td');
+  let dailyLocationTotal = document.createElement('th');
 
   dailyLocationTotal.textContent = 'Daily Location Total';
 
