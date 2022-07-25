@@ -42,25 +42,37 @@ const maxTrafficCurve =
   0.6,
 ];
 
+// empty array for hourly totals of every location
+let hourlyTotalsEveryLocation = [];
+
+
+// class 09 lab
 // template to listen for and handle events
 // 1. window into the dom (the thing we are going to attach the event listener to)
-
-let form = document.getElementById('formId');
-// let form2 = document.querySelector('form');
+let form = document.getElementById('newCookieStand');
 
 // 3. event handler
 function handleSubmit(event) {
   event.preventDefault();
-  let first = event.target.firstName.value;
-  let last = event.target.lastName.value;
-  console.log(first, last);
+  console.log('form submitted');
+  let location = event.target.location.value;
+  let minCust = parseInt(event.target.minCust.value);
+  let maxCust = parseInt(event.target.maxCust.value);
+  let avgCookiePerSale = +event.target.avgCookiePerSale.value;
+  console.log(`type of max cust ${typeof(maxCust)}`);
+  console.log(`type of avg cookie ${typeof(avgCookiePerSale)}`);
+  let newBranch = new CookieStand(location, minCust, maxCust, avgCookiePerSale);
+  console.log('handled submit');
+  console.log(`new branch from form: ${newBranch}`);
+
+  newBranch.renderSalesDataRows();
+
+  renderSalesTableFooter();
 }
 
 // 2. add event listener
 //.addEventListener
 form.addEventListener('submit', handleSubmit);
-// empty array for hourly totals of every location
-let hourlyTotalsEveryLocation = [];
 
 // constructor Object for the locations
 function CookieStand (location, minCust, maxCust, avgCookiesPerSale)
@@ -190,13 +202,13 @@ function renderSalesTableHeader()
 
 
 
-  // create an empty <th> and append to <thead>
-  let emptyHoursDataRow = document.createElement('th');
+  // create an empty <td> and append to <thead>
+  let emptyHoursDataRow = document.createElement('td');
   businessHoursRow.appendChild(emptyHoursDataRow);
   for(let i = 0; i < businessHours.length; i++)
   {
     // create a <td> for each business hour
-    let businessHoursDataRow = document.createElement('th');
+    let businessHoursDataRow = document.createElement('td');
 
     // give it content (the hours from 6am to 7pm)
     businessHoursDataRow.textContent = `${businessHours[i]}`;
@@ -206,7 +218,7 @@ function renderSalesTableHeader()
   }
 
   // create Daily Location Total Header row
-  let dailyLocationTotal = document.createElement('th');
+  let dailyLocationTotal = document.createElement('td');
 
   dailyLocationTotal.textContent = 'Daily Location Total';
 
@@ -223,41 +235,64 @@ function renderSalesTableFooter()
 {
   console.log('this is the table footer');
 
+  // grandTotalSales default value is 0
+  let grandTotalSales = 0;
+
   // grab salesTable
   let salesTable = document.getElementById('salesTable');
 
-  // make a <tfoot> element
-  let totalsFooter = document.createElement('tfoot');
-  salesTable.appendChild(totalsFooter);
-
-  // make a table row for the totals
-  let totalsRow = document.createElement('tr');
-  totalsRow.setAttribute('id', 'hourlyTotalSales');
-  totalsFooter.appendChild(totalsRow);
-
-  // make a table cell to display 'Totals'
-  let totalsLeadCell = document.createElement('td');
-  totalsLeadCell.textContent = 'Totals';
-  totalsRow.appendChild(totalsLeadCell);
-
-  // grandTotalSales default value is 0;
-  let grandTotalSales = 0;
-
-  for (let i = 0; i < businessHours.length; i++)
+  if (!document.querySelector('tfoot'))
   {
+  // if there isn't already a footer, make one with totals
+
+    // make a <tfoot> element
+    let totalsFooter = document.createElement('tfoot');
+    salesTable.appendChild(totalsFooter);
+
+    // make a table row for the totals
+    let totalsRow = document.createElement('tr');
+    totalsRow.setAttribute('id', 'hourlyTotalSales');
+    totalsFooter.appendChild(totalsRow);
+
+    // make a table cell to display 'Totals'
+    let totalsLeadCell = document.createElement('td');
+    totalsLeadCell.textContent = 'Totals';
+    totalsRow.appendChild(totalsLeadCell);
+
+
+
+    for (let i = 0; i < businessHours.length; i++)
+    {
     // makes cells with total hourly sales data across all branches
-    let hourlyTotalsEveryLocationCell = document.createElement('td');
-    hourlyTotalsEveryLocationCell.textContent = hourlyTotalsEveryLocation[i];
-    totalsRow.appendChild(hourlyTotalsEveryLocationCell);
+      let hourlyTotalsEveryLocationCell = document.createElement('td');
+      hourlyTotalsEveryLocationCell.setAttribute('id', `total${i}`);
+      hourlyTotalsEveryLocationCell.textContent = hourlyTotalsEveryLocation[i];
+      totalsRow.appendChild(hourlyTotalsEveryLocationCell);
 
-    // accumulate grandTotalSales
-    grandTotalSales += hourlyTotalsEveryLocation[i];
+      // accumulate grandTotalSales
+      grandTotalSales += hourlyTotalsEveryLocation[i];
+    }
+
+    // make a cell for 'Totals'
+    let grandTotalCell = document.createElement('td');
+    grandTotalCell.setAttribute('id', 'grandTotal');
+    grandTotalCell.textContent = grandTotalSales;
+    totalsRow.appendChild(grandTotalCell);
   }
+  else
+  {
+  // if tfoot already exists, update the values of the sales data cells
+    for (let i = 0; i < businessHours.length; i++)
+    {
+      let newHourlyTotalsCell = document.getElementById(`total${i}`);
+      newHourlyTotalsCell.textContent = hourlyTotalsEveryLocation[i];
 
-  // make a cell for 'Totals'
-  let grandTotalCell = document.createElement('td');
-  grandTotalCell.textContent = grandTotalSales;
-  totalsRow.appendChild(grandTotalCell);
+      grandTotalSales += hourlyTotalsEveryLocation[i];
+
+      let newGrandTotalCell = document.getElementById('grandTotal');
+      newGrandTotalCell.textContent = grandTotalSales;
+    }
+  }
 }
 
 
