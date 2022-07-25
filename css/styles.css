@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: beige;
+  background-color: salmon;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -12,6 +12,10 @@ body {
 
 main {
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 h3 {
@@ -70,4 +74,14 @@ footer {
 
   height: 7rem;
 
+}
+
+fieldset {
+  border: 1px solid lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 500px;
+  margin: auto;
 }
