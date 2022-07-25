@@ -7,19 +7,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/styles.css">
   </head>
 
   <body>
     <header>
       <nav>
         <ul>
-
           <li><a href="../index.html"><img src="../img/salmon.png" alt="homepage fish link" width="200">
             </a></li>
-          <li><a href="../pages/sales.html">Sales</a></li>
-
+          <li><a href="#">Sales</a></li>
         </ul>
       </nav>
     </header>
@@ -28,23 +26,31 @@
       <h1>Welcome to Pat's Salmon Cookies!</h1>
       <p>Nothing's Fishier!™</p>
       <section id="salesLists">
+        <h3>Sales Projections</h3>
         <!-- make ul here -->
         <!-- make table stuff here -->
-      </section>
-      <form id="formId">
-      <fieldset>
-        <legend>User Name</legend>
-        <!-- Two ways to create a label -->
-        <!-- 1. sibling elements -->
-        <label for="firstname">First Name</label>
-        <input type="text" name="firstName" placeholder="ex.: 'Bill'" id="firstname">
 
-        <!-- 2. label is the parent of input -->
-        <label>Last Name
-          <input type="text" name="lastName">
+      </section>
+
+      <form id="newCookieStand">
+      <fieldset>
+        <legend>Want to help expand the fishy empire?</legend>
+        <!-- Two ways to create a label -->
+
+        <label>Location
+          <input type="text" name="location" placeholder="ex.: 'Funky Town'" required>
+        </label>
+        <label>Minimum customers per hour
+          <input type="number" name="minCust" placeholder="ex.: '1'" required>
+        </label>
+        <label>Maximum customers per hour
+          <input type="number" name="maxCust" placeholder="ex.: '9001'" required>
+        </label>
+        <label>Average cookies sold per transaction
+          <input type="number" step="0.1" name="avgCookiePerSale" placeholder="ex.: '0.1'" required>
         </label>
       </fieldset>
-      <button type="submit">Submit</button>
+      <button type="submit">Create new cookie stand!</button>
     </form>
 
     </main>
@@ -57,27 +63,12 @@
     <footer>
       <nav>
         <ul>
-          <li><a href="#">About</a></li>
+          <li><a href="../index.html">About</a></li>
           <li><a href="mailto:patlovesfishyfish@salmon.cookie">Contact Us!</a></li>
+          <li><a href="tel:+18008008553">Call Us Toll Free! 800-800-8553</a></li>
         </ul>
       </nav>
     </footer>
-    <script src="../js/app.js" type="text/javascript"></script>
-    </main>
-
-    <aside>
-      <p>Open Worldwide: 6 a.m. to 8 p.m.</p>
-      <p></p>
-    </aside>
-
-    <footer>
-      <nav>
-        <ul>
-          <li><a href="#">About</a></li>
-          <li><a href="mailto:patlovesfishyfish@salmon.cookie">Contact Us!</a></li>
-        </ul>
-      </nav>
-    </footer>
-    <script src="/js/app.js" type="text/javascript"></script>
+    <script src="../js/app.js"></script>
   </body>
 </html>
