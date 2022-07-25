@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
@@ -57,6 +58,7 @@ tbody td, tfoot td {
 
 table {
   margin: 1rem;
+  background-color: beige;
 }
 td, th {
   padding: .5rem;
@@ -66,14 +68,18 @@ thead th {
 
 }
 
-.salesData {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+#salesLists {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(40, 147, 240)
+}
+
+p, aside li{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(80, 240, 17);
 }
 
 footer {
-
   height: 7rem;
-
 }
 
 fieldset {
@@ -84,4 +90,30 @@ fieldset {
   align-items: flex-end;
   width: 500px;
   margin: auto;
+  background-color: beige;
+}
+
+h1,h2,h3 {
+  font-family: 'Open Sans', sans-serif;
+  color: darkblue;
+}
+
+#scroll {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  height: 200px;
+  width: 300px;
+}
+
+main article {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+article p {
+  width: 300px;
 }
